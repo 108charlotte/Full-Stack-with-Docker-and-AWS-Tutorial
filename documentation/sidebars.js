@@ -40,20 +40,20 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Permissions',
-          items: [
-            'full-stack-w-docker/permissions/permissions',
-            'full-stack-w-docker/permissions/backend',
-            'full-stack-w-docker/permissions/frontend'
-          ],
-        },
-        {
-          type: 'category',
           label: 'Tasks',
           items: [
             'full-stack-w-docker/tasks/tasks',
             'full-stack-w-docker/tasks/backend',
             'full-stack-w-docker/tasks/frontend'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Permissions',
+          items: [
+            'full-stack-w-docker/permissions/permissions',
+            'full-stack-w-docker/permissions/backend',
+            'full-stack-w-docker/permissions/frontend'
           ],
         },
       ],
