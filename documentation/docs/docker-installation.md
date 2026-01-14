@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 # Docker Desktop and Installation
 Docker desktop is an easy way to visually manage your docker containers and images. Installing it will also install Docker! 
 

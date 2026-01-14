@@ -1,0 +1,1 @@
+This is an introduction to deploying a containerized Docker application on AWS EC2 instances

@@ -1,0 +1,2 @@
+# Full Stack with Docker: Section Overview
+This part of the tutorial is an introduction to deploying a full-stack todo list containerized with Docker, which in the second part will be deployed on AWS EC2 instances. The frontend will use **React**, the backend will use **Django**, and the database will use **PostgreSQL**. 
