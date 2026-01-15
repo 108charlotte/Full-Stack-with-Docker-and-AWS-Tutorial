@@ -346,7 +346,7 @@ function Login() {
         .then((response) => response.json())
         .then((error) => {
             if (error.error == "None, login successful") {
-                navigate('/', { state: { username: username, activeUserUsername: username } })
+                navigate('/', { state: { username: username, activeUserUsername: username } }) {/* this state will be read by the dashboard to determine the active user, which is important for permissions later! */}
             } else {
                 console.error("Error:", error.error); 
                 setErrorForUser(error.error)
@@ -415,7 +415,7 @@ function Register() {
         .then((error) => {
             {/* using this sort of error passing from the backend helps me provide the user with more specific feedback */}
             if (error.error == "None, user creation successful") {
-                navigate('/', { state: { username: username, activeUserUsername: username } })
+                navigate('/', { state: { username: username, activeUserUsername: username } }) {/* this state will be read by the dashboard to determine the active user, which is important for permissions later! */}
             } else {
                 console.error("Error:", error.error); 
                 setErrorForUser(error.error)

@@ -70,7 +70,7 @@ Now, set up the Postgres database, defining a base image and linking it to the v
 image: postgres:17.1
 volumes: 
     - db-data:/var/lib/postgresql/data
-port: 
+ports: 
     - "5432:5432"
 ```
 
@@ -118,8 +118,8 @@ Now, let's add a health check for the Postgres database so that we can ensure it
 
 ```dockerfile
 healthcheck: 
-    # these values are defined in the .env along with more sensitive information
-    test: ["CMD", "pg_isready", "-U", "user", "-d", "db", "-h", "localhost", "-p", "5432"]
+    # these values are defined in the .env along with more sensitive information. since 5432 is the default port for postgres, you don't have to set it in this command
+    test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
     interval: 5s
     timeout: 5s
     retries: 20
@@ -205,3 +205,6 @@ RUN apt-get update && \
 ```
 
 The first line updates the available package list, then the second line installs necessary Postgres tools. The third line installs requirements.txt without saving pip's download cache, which saves space. The next lines remove `libpq-dev` (which is only needed during installation) but keeps `postgresql-client` (which supplies the `pg_isready` tool we are using in the health check). Deleting unnecessary installations saves more space in the Docker container. 
+
+## Testing
+That's it! Now, make sure you are in the root directory (the directory with docker-compose.yaml) and try spinning up the Docker containers with `docker compose up`. If you ever need to force a re-build, you can use the `--build` flag. Then, go to http://localhost:5173/register. You should see your page just as you could after running all those Docker commands. Check your Docker desktop interface, and you should see three services running, all nested under the name of your local repository: db, frontend, and backend. 
