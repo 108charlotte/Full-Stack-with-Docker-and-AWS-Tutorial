@@ -1,0 +1,2 @@
+# Tasks
+This is the core functionality of the application! Once authenticated, users should be able to see the tasks of every other person on the platform by searching their username, and add and delete tasks which belong to them (this will be enforced in the [permissions section](../permissions/permissions.md)). 

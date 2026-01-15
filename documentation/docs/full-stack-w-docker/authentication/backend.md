@@ -39,7 +39,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # runs a command to start the Django app on port 4000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:4000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 ```
 
 Your entire Dockerfile should look like this: 
@@ -59,8 +59,8 @@ RUN pip install -r requirements.txt
 # copies everything else in "backend" to the working directory
 COPY . .
 
-# runs a command to start the Django app on port 4000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:4000"]
+# runs a command to start the Django app on port 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 ```
 
 The Django application is now configured! To use Django commands, like creating an app, we can just use Docker to create containers from the image (ex. `docker run --rm -v $(pwd):/app backend python manage.py makemigrations` to update the database schema). Note that we now have two Docker images (frontend and backend), so the next section will cover configuring a Docker compose file to run both with a single command. 
@@ -293,4 +293,4 @@ def logout_user(request):
     return JsonResponse({"error": "Needs a post request to log out current user"})
 ```
 
-Congratulations, you've finished the backend! Now, try running your app. In the "frontend" folder, run `docker build -t frontend .`, then `docker run -p 5173:5173 frontend`. Now, in the "backend" folder, run `docker build -t backend .`, then `docker run -p 4000:4000 backend`. If you check Docker desktop, you should see two running containers. Now, go to http://localhost:5173/register. When you create a new account, it should redirect you to the basic layout from AuthLayout.jsx, but in the next part we'll make it redirect to the todo list interface! 
+Congratulations, you've finished the backend! Now, try running your app. In the "frontend" folder, run `docker build -t frontend .`, then `docker run -p 5173:5173 frontend`. Now, in the "backend" folder, run `docker build -t backend .`, then `docker run -p 8000:8000 backend`. If you check Docker desktop, you should see two running containers. Now, go to http://localhost:5173/register. When you create a new account, it should redirect you to the basic layout from AuthLayout.jsx, but in the next part we'll make it redirect to the todo list interface! 
