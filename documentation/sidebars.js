@@ -49,15 +49,6 @@ const sidebars = {
             'full-stack-w-docker/tasks/backend'
           ],
         },
-        {
-          type: 'category',
-          label: 'Permissions',
-          items: [
-            'full-stack-w-docker/permissions/permissions',
-            'full-stack-w-docker/permissions/frontend',
-            'full-stack-w-docker/permissions/backend'
-          ],
-        },
       ],
     },
     {

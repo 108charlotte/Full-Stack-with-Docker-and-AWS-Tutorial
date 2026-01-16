@@ -293,4 +293,8 @@ def logout_user(request):
     return JsonResponse({"error": "Needs a post request to log out current user"})
 ```
 
+:::note
+The frontend request to this path will be added on the main dashboard page in the [tasks](../tasks/frontend.md) section
+:::
+
 Congratulations, you've finished the backend! Now, try running your app. In the "frontend" folder, run `docker build -t frontend .`, then `docker run -p 5173:5173 frontend`. Now, in the "backend" folder, run `docker build -t backend .`, then `docker run -p 8000:8000 backend`. If you check Docker desktop, you should see two running containers. Now, go to http://localhost:5173/register. When you create a new account, it should redirect you to the basic layout from AuthLayout.jsx, but in the next part we'll make it redirect to the todo list interface! 
