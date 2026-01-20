@@ -1,1 +1,6 @@
-This is an introduction to deploying a containerized Docker application on AWS EC2 instances
+# Deploying on AWS: Section Overview
+This section will go over deploying a Docker application (that has a GitHub repository) on an AWS (Amazon Web Services) EC2 instance using docker compose. If you followed the steps in the [last section](../full-stack-w-docker/section-overview.md) to create your application, everything should be configured properly. If you are using another full-stack project with this tutorial, just make sure that you know the ports for the frontend, backend, and database, understand the permissions that each will need for accessing the internet, have a GitHub repository, and have set up your application to launch with docker compose. 
+
+First, we will discuss the constraints associated with the AWS free tier in [considerations](./considerations.md)
+
+Then, we will go over how to create a new EC2 instance through the AWS console in [EC2 creation](./ec2-creation.md). We will dover how to install docker and docker compose on that instance in [EC2 installation](./ec2-installation.md), then uploading your code from your GitHub repository into the instance in [Uploading A GitHub Project to EC2](./uploading-files-to-ec2.md). Finally, we will run your application on the instance in [Running Your Application](./running-your-app.md). 

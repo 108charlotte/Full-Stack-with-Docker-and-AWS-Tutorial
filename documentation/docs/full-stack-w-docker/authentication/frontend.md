@@ -1,6 +1,6 @@
 # Frontend
 ## Creating a React Project
-With a new project open in your editor of choice, start by creating a React app with Vite. If you have npm installed, run `npm create vite@latest frontend`. If you don't have npm installed, alternate commands for Yarn, pnpm, Bun, and Deno can be found in the [official vite guide](https://vite.dev/guide/). 
+With your new project open in your editor of choice, start by creating a React app with Vite. If you have npm installed, run `npm create vite@latest frontend`. If you don't have npm installed, alternate commands for Yarn, pnpm, Bun, and Deno can be found in the [official vite guide](https://vite.dev/guide/). 
 
 Follow the setup wizard's presets <u>except</u> when selecting a framework (choose **React** instead of vanilla) and a variant (this tutorial will use **Javascript** instead of TypeScript). After finishing the setup, you should have a new React app in a folder titled "frontend"! 
 

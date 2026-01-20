@@ -7,9 +7,8 @@ Don't go install all of these right now! Docker will allow you to run React, Dja
 
 Development will be divided into three sections: 
 * **[User Authentication](./authentication/authentication.md)**: allowing users to login and register
-* **[Tasks](./tasks/tasks.md)**: allowing authenticated users to view, add, and delete tasks
-* **[Permissions](./permissions/permissions.md)**: limiting users permissions to only add and delete tasks that belong to them
+* **[Tasks](./tasks/tasks.md)**: allowing authenticated users to view, add, and delete tasks (with authorization to add/delete their own but only view others' tasks)
 
-Each section will include an overview file named after the section (ex. "Authentication", "Tasks", "Permissions"), a section on setting up the frontend for that specific section, and a section on setting up the backend for that section. 
+Each section will include an overview file named after the section (ex. "Authentication", "Tasks"), a section on setting up the frontend for that specific section, and a section on setting up the backend for that section. 
 
 Click next to get started with authentication! 
