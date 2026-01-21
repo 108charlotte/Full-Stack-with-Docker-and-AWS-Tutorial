@@ -41,10 +41,10 @@ Essentially, this means that container images allow you to create containers on 
 <figure>
 ![The process going from a dockerfile to a docker container](./img/dockerfile-to-image-to-container.png)
     <figcaption>
-        A docker container image is created from a dockerfile (more about this [here](./dockerfiles.md)). Running an image produces a container! (image from [this CTO.ai article](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/))
+        A docker container image is created from a dockerfile (more about this in [this AWS article](https://aws.amazon.com/compare/the-difference-between-docker-images-and-containers/)). Running an image produces a container! (image from [this CTO.ai article](https://cto.ai/blog/docker-image-vs-container-vs-dockerfile/))
     </figcaption>
 </figure>
 
 :::tip
-You use a container image to create a container on your local machine. You can get images from various online libraries, including [Docker Hub](./docker-hub.md) and [Amazon ECR](https://gallery.ecr.aws/), or create your own! 
+You use a container image to create a container on your local machine. You can get images from various online libraries, including [Docker Hub](https://www.geeksforgeeks.org/devops/what-is-docker-hub/) and [Amazon ECR](https://gallery.ecr.aws/), or create your own! 
 :::

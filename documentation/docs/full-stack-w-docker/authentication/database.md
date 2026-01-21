@@ -2,7 +2,7 @@
 By default, the Django app will use a SQLite database for storing its data, but PostgreSQL is used by many organizations for their databases since it is scalable and suitable for deployment in production. This section will describe how to set up a PostgreSQL database for your full-stack application. 
 
 ## Django Settings: Database Configuration
-Open the settings.py file of your Django project (in the "backend" folder), and at the top add `import os` (this will be used to retrieve environmental variables set by the Docker compose file). Then, find the section which looks like this: 
+Open the `settings.py` file of your Django project (in the `djangobackend` folder), and at the top add `import os` (this will be used to retrieve environmental variables set by the Docker Compose file). Then, find the section which looks like this: 
 
 ```python
 DATABASES = {
@@ -13,7 +13,7 @@ DATABASES = {
 }
 ```
 
-Update the engine to `'django.db.backends.postgresql'`, update the name to `os.environ.get('DB_NAME')`, and set the following variables: 
+Update the `ENGINE` to `'django.db.backends.postgresql'`, update the name to `os.environ.get('DB_NAME')`, and set the following variables: 
 
 ```python
 'USER': os.environ.get('DB_USER'),
@@ -36,11 +36,11 @@ DATABASES = {
 }
 ```
 
-Now, rather than using the default SQLite database ('django.db.backends.sqlite3'), Django will use a PostgreSQL database which we will initialize in the Docker compose file. `os.envrion.get('...')` will pull database information from the environmental variables set by the Docker compose file. 
+Now, rather than using the default SQLite database (`'django.db.backends.sqlite3'`), Django will use a PostgreSQL database which we will initialize with the Docker Compose file. 
 
 
 ## Docker Compose
-The Docker compose file can be used to create this new database, set up periodic data migrations, and check for database health. First, add another service titled "db" to your docker-compose.yaml file. Set its image to `postgres:17.1`. Now, we need to add a volume for persistent data storage when the container restarts. On the same level as "services", add a section titled "volumes", and include "db-data:" inside of it. This will define a named volume which we will link the database to. 
+The Docker compose file can be used to create this new database, set up periodic data migrations, and check for database health. First, add another service titled `db` to your `docker-compose.yaml` file. Set its image to `postgres:17.1`. Now, we need to add a volume for persistent data storage when the container restarts. On the same level as "services", add a section titled "volumes", and include "db-data:" inside of it. This will define a named volume which we will link the database to. 
 
 Right now, your Docker compose file should look like this: 
 ```dockerfile
@@ -64,7 +64,7 @@ volumes:
   db-data:
 ```
 
-Now, set up the Postgres database, defining a base image and linking it to the volume by adding the following lines to your "db" service: 
+Now, set up the Postgres database, defining a base image and linking it to the volume by adding the following lines to your `db` service: 
 
 ```dockerfile
 image: postgres:17.1
@@ -76,7 +76,7 @@ ports:
 
 Port 5432 is the default port for Postgres, so that's why I'm using it here. 
 
-To review, your "db" service should look like this: 
+To review, your `db` service should look like this: 
 ```dockerfile
 db: 
     image: postgres:17.1
@@ -87,7 +87,7 @@ db:
 ```
 
 ### Environmental Variables
-The Django backend also needs the credentials to access and edit the Postgres database. So, we will use a local .env file. Create a .gitignore file as a sibling to docker-compose.yaml at the root of your repository. Add `.env` to the gitignore. Then create another file that is a sibling to docker-compose.yaml: .env. This is where all of the Postgres database information will be set. You will need to define the following variables: 
+The Django backend also needs the credentials to access and edit the Postgres database. So, we will use a local `.env` file. Create a .gitignore file as a sibling to `docker-compose.yaml` at the root of your repository. Add `.env` to the gitignore. Then create another file that is a sibling to `docker-compose.yaml`: `.env`. This is where all of the Postgres database information will be set. You will need to define the following variables: 
 
 ```env
 DB_HOST=db
@@ -99,7 +99,7 @@ POSTGRES_USER=user
 POSTGRES_PASSWORD=tutorial_password
 ```
 
-You should set your database password and Postgres password to a randomly generated string of characters rather than something easily guessable like "tutorial-password", "development-password", "temp", etc. Now, set the Docker compose to use these variables: 
+You should set your database password and Postgres password to a randomly generated string of characters rather than something easily guessable like "tutorial_password", "development_password", "temp", etc. Now, set the Docker Compose to use these variables: 
 
 The backend should load the .env so that Django has the database credentials, so add the following in the "backend" service: 
 ```dockerfile
@@ -188,12 +188,12 @@ Django>=5.1,<6.0
 django-cors-headers
 ```
 
-Now, add the following line to require psycopg, the Postgres adapter for Python. The [c] includes the C-based implementation, which is faster than the pure Python one: 
+Now, add the following line to require psycopg, the Postgres adapter for Python. 
 ```
-psycopg[c]==3.2.3
+psycopg==3.2.3
 ```
 
-We're almost done! Now, we just need to temporarily install the packages necessary for installing psycopg. You can do that by adding the below code in place of the `RUN pip install -r requirements.txt` line: 
+We're almost done! Now, we just need to temporarily install the packages necessary for installing `psycopg`. You can do that by adding the below code in place of the `RUN pip install -r requirements.txt` line: 
 
 ```dockerfile
 RUN apt-get update && \
@@ -207,4 +207,6 @@ RUN apt-get update && \
 The first line updates the available package list, then the second line installs necessary Postgres tools. The third line installs requirements.txt without saving pip's download cache, which saves space. The next lines remove `libpq-dev` (which is only needed during installation) but keeps `postgresql-client` (which supplies the `pg_isready` tool we are using in the health check). Deleting unnecessary installations saves more space in the Docker container. 
 
 ## Testing
-That's it! Now, make sure you are in the root directory (the directory with docker-compose.yaml) and try spinning up the Docker containers with `docker compose up`. If you ever need to force a re-build, you can use the `--build` flag. Then, go to http://localhost:5173/register. You should see your page just as you could after running all those Docker commands. Check your Docker desktop interface, and you should see three services running, all nested under the name of your local repository: db, frontend, and backend. 
+That's it! Now, make sure you are in the root directory (the directory with `docker-compose.yaml`) and try spinning up the Docker containers with `docker compose up`. If you need to force a re-build, you can use the `--build` flag. Then, go to `http://localhost:5173/register`. You should see your page just as you could after running all those Docker commands. Check your Docker desktop interface, and you should see three services running, all nested under the name of your local repository: db, frontend, and backend (see below for what mine looks like!). 
+
+![A green running service titled after my repository name, with three services for the database, backend, and frontend listed beneath it](./img/docker-desktop-compose.png)
