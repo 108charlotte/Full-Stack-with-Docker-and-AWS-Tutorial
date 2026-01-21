@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Full-Stack with Docker and AWS Tutorial',
   tagline: 'Learn about full-stack development, containerization, and hosting while gaining hands-on experience! ',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/full-stack.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {

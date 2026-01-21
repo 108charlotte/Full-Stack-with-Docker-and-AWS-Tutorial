@@ -14,7 +14,7 @@ const FeatureList = [
   },
   {
     title: 'Full-Stack Applications',
-    img: require('@site/static/img/full-stack-developer.png').default,
+    img: require('@site/static/img/full-stack.png').default,
     description: (
       <>
         Learn how to create a frontend with React, backend with Django, and database with PostgreSQL, and set up communication between them. (image credit: <a href="https://www.flaticon.com/free-icons/development" title="development icons">Development icons created by Talha Dogar - Flaticon</a>)
